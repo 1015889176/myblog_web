@@ -7,3 +7,12 @@ export const fetchData = query => {
         params: query
     });
 };
+
+// 用户登录
+export const userLogin = (data) => {
+    return request({
+        url: 'login',
+        methods: 'POST',
+        data: {}
+    });
+};
