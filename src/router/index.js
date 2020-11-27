@@ -105,6 +105,10 @@ export default new Router({
                     path: '/userlist',
                     component: () => import(/* webpackChunkName: "donate" */ '@/views/users/userlist.vue'),
                     meta: { title: '用户列表' }
+                }, {
+                    path: '/articlelist',
+                    component: () => import(/* webpackChunkName: "donate" */ '@/views/article/articlelist.vue'),
+                    meta: { title: '文章列表' }
                 }
             ]
         },

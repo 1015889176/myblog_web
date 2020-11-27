@@ -143,6 +143,18 @@ export default {
                             title: '用户列表'
                         }
                     ]
+                },
+                {
+                    icon: 'el-icon-document',
+                    index: '3',
+                    title: '文章管理',
+                    subs: [
+                        {
+                            icon: 'el-icon-user',
+                            index: 'articlelist',
+                            title: '文章列表'
+                        }
+                    ]
                 }
             ]
         };
