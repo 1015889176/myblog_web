@@ -23,13 +23,13 @@
 </template>
 
 <script>
-import { userLogin } from '@/api/index';
+import { user } from '@/api/index';
 export default {
     data: function () {
         return {
             param: {
-                username: null,
-                password: null
+                username: '',
+                password: ''
             },
             rules: {
                 username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
@@ -42,15 +42,25 @@ export default {
             this.$refs.login.validate((valid) => {
                 if (valid) {
                     let msg = {
-                        userId: this.param.username,
-                        password: this.param.password
+                        userId: this.param.username.toString(),
+                        password: this.param.password.toString()
                     };
-                    userLogin(msg).then((res) => {
-                        console.log(res);
+                    user.userLogin(msg).then((res) => {
+                        if (res.code == 500) {
+                            this.$message.error(res.message);
+                            return;
+                        }
+                        if (res.code == 200) {
+                            this.$message.success('登录成功');
+                            localStorage.setItem('ms_username', res.data[0].userName);
+                            localStorage.setItem('ms_usercount', res.data[0].userCount);
+                            localStorage.setItem('ms_userid', res.data[0].userId);
+                            this.$router.push('/');
+                        }
                     });
-                    // this.$message.success('登录成功');
-                    localStorage.setItem('ms_username', this.param.username);
-                    // this.$router.push('/');
+                    // // this.$message.success('登录成功');
+                    // localStorage.setItem('ms_username', this.param.username);
+                    // // this.$router.push('/');
                 } else {
                     this.$message.error('请输入账号和密码');
                     console.log('error submit!!');

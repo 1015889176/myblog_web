@@ -7,12 +7,33 @@ export const fetchData = query => {
         params: query
     });
 };
+export const user = { //房间注销
+    // 用户登录
+    userLogin: (data) => {
+        return request({
+            url: 'login',
+            method: 'POST',
+            data: data
+        });
+    },
+    // 用户列表
+    userList: (data) => {
+        return request({
+            url: '/users/userList',
+            method: 'POST',
+            data: data
+        });
+    },
+    // 删除用户
+    delUser: (data) => {
+        return request({
+            url: '/users/delUser',
+            method: 'POST',
+            data: data
+        });
+    }
+}
 
-// 用户登录
-export const userLogin = (data) => {
-    return request({
-        url: 'login',
-        methods: 'POST',
-        data: {}
-    });
-};
+
+
+
